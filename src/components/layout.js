@@ -1,10 +1,20 @@
 import React from "react"
 import { css } from "@emotion/react"
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 
 import { rhythm } from "../utils/typography"
 
 export default function Layout({ children }) {
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `)
+
   return (
     <div css={css`
       margin: 0 auto;
@@ -17,7 +27,7 @@ export default function Layout({ children }) {
           margin-bottom: ${rhythm(2)};
           display: inline-block;
           font-style: normal;
-        `}>Pandas Eating Lots</h3>
+        `}>{data.site.siteMetadata.title}</h3>
       </Link>
       <Link
         css={css`
