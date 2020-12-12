@@ -1,11 +1,10 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { css } from "@emotion/react"
 import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
 
 export default function Home({ data }) {
-  console.log(data)
   return (
     <Layout>
       <div>
@@ -24,12 +23,14 @@ export default function Home({ data }) {
                 margin-bottom: ${rhythm(1/4)};
               `}
             >
-              {node.frontmatter.title}{" "}
+              <Link to={node.fields.slug}>
+                {node.frontmatter.title}
+              </Link>
               <span
                 css={css`
                   color: #bbb;
                 `}
-              >{node.frontmatter.date}</span>
+              >{` — ${node.frontmatter.date}`}</span>
             </h3>
             <p>{node.excerpt}</p>
           </div>)
@@ -46,6 +47,9 @@ export const query = graphql`
       edges {
         node {
           id
+          fields {
+            slug
+          }
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
