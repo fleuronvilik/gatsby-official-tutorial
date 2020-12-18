@@ -1,8 +1,10 @@
 module.exports = {
   siteMetadata: {
     title: `Pandas Eating Lots`,
-    description: `A simple description about Pandas Eating Lots`,
-    author: `fleuronvilik with gatsbyjs`,
+    description: `We are the only site running on your computer dedicated to showing the best photos and videos of pandas eating lots of foods.`,
+    author: `fleuronvilik`,
+    titleHome: `Amazing Pandas Eating Things`,
+    titleAbout:  `About`,
   },
   plugins: [
     {

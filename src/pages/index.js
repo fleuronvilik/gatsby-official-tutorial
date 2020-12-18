@@ -3,17 +3,22 @@ import { graphql, Link } from "gatsby"
 import { css } from "@emotion/react"
 import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 export default function Home({ data }) {
   return (
     <Layout>
+      <SEO
+        title={data.site.siteMetadata.titleHome}
+        description={data.site.siteMetadata.description}
+      />
       <div>
         <h1
           css={css`
             display: inline-block;
             border-bottom: 1px solid; 
           `}
-          >Amazing Pandas Eating Things
+          >{data.site.siteMetadata.titleHome}
         </h1>
         <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
         {data.allMarkdownRemark.edges.map(({ node }) => (
@@ -56,6 +61,12 @@ export const query = graphql`
           }
           excerpt
         }
+      }
+    }
+    site {
+      siteMetadata {
+        titleHome
+        description
       }
     }
   }
